@@ -33,44 +33,40 @@ T = Trunk]**
 
 **figures**
 - fig.10 - main composed figure
- * Spongy_Bone_Horizontal_A.pdf 
- * Trunk_Horizontal_B.pdf
+  * Spongy_Bone_Horizontal_A.pdf 
+  * Trunk_Horizontal_B.pdf
 - fig.12 - main composed figure
- * Lower_Limbs_Horizontal.pdf
- * Upper_Limbs_Horizontal_A.pdf
+  * Lower_Limbs_Horizontal.pdf
+  * Upper_Limbs_Horizontal_A.pdf
 - fig.7 - main composed figure
- * Cranial_Bones_Vertical_A.pdf
- * Long_Bones_Vertical_B.pdf
- * Spongy_Bone_Vertical_C.pdf
+  * Cranial_Bones_Vertical_A.pdf
+  * Long_Bones_Vertical_B.pdf
+  * Spongy_Bone_Vertical_C.pdf
 - fig.8 - main composed figure
- * Lower_Limbs_Vertical_B.pdf
- * Upper_Limbs_Vertical_A
- * Trunk_Vertical_C.pdf
+  * Lower_Limbs_Vertical_B.pdf
+  * Upper_Limbs_Vertical_A
+  * Trunk_Vertical_C.pdf
 - fig.9 - main composed figure
- * Cranial_Bones_Horizontal_A.pdf
- * Long_Bones_Horizontal_B.pdf
+  * Cranial_Bones_Horizontal_A.pdf
+  * Long_Bones_Horizontal_B.pdf
 - fig.13.pdf - main figure
 - fig.14.pdf - main figure
 - fig.15.pdf - main figure
 
 **scripts**
-- Plots_virt_phys.R - Script for creating figures 7, 8, 9, 10, 12
+- Plots_virt_phys.R - Script to create figures 7, 8, 9, 10, 12
 - permutation_test.R - Script to run permutation analysis, creating figures 13 - 15, and extracting data contained in table 2
 
 **table_2**
-- Observed_correlation_HA_B.csv - 
-Add files via upload
-4 hours ago
-Observed_correlation_HC_D.csv
-Add files via upload
-4 hours ago
-Observed_correlation_vertical.csv
-Add files via upload
-4 hours ago
-Two-sided_p-value_HA_B.csv
-Add files via upload
-4 hours ago
-Two-sided_p-value_HC_D.csv
-Add files via upload
-4 hours ago
-Two-sided_p-value_vertical.csv
+- Observed_correlation_HA_B.csv - data frame containing the correlation coefficients calculated from the permutation test for the Halves A and B
+- Observed_correlation_HC_D.csv - data frame containing the correlation coefficients calculated from the permutation test for the Halves C and D
+- Observed_correlation_vertical.csv - data frame containing the correlation coefficients calculated from the permutation test for the sections upper, central, and lower
+- Two-sided_p-value_HA_B.csv - data frame containing the p-values from the permutation test for the Halves A and B
+- Two-sided_p-value_HC_D.csv - data frame containing the p-values from the permutation test for the Halves C and D
+- Two-sided_p-value_vertical.csv - data frame containing the p-values from the permutation test for the sections upper, central, and lower
+
+# Funding and ethics
+This work is part of the first author’s PhD project funded by the Cambridge Trust International Scholarship, with the contribution of the Robert Sloley Travel Grant (St John’s College, Cambridge), Worts Travelling Scholars Fund and University Fieldwork Fund (Department of Archaeology, University of Cambridge). This research received a favourable ethical opinion from the Department of Archaeology Ethics Board (reference number: ARCH-01-2022-07) at the University of Cambridge.
+
+# Licence
+CC-BY 3.0
