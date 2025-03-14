@@ -2,12 +2,12 @@
 library(here)
 library(reshape2)
 library(tidyverse)
-virt<-read.csv(here("data","vertical_virtual"))
-phys<-read.csv(here("data","vertical_physical"))
-virt_HA_HB<- read.csv(here("data","horizontal_HAB_virtual"))
-phys_HA_HB<- read.csv(here("data","horizontal_HAB_physical"))
-virt_HC_HD<- read.csv(here("data","horizontal_HCD_virtual"))
-phys_HC_HD<- read.csv(here("data","horizontal_HCD_physical"))
+virt<-read.csv(here("data","vertical_virtual.csv"))
+phys<-read.csv(here("data","vertical_physical.csv"))
+virt_HA_HB<- read.csv(here("data","horizontal_HAB_virtual.csv"))
+phys_HA_HB<- read.csv(here("data","horizontal_HAB_physical.csv"))
+virt_HC_HD<- read.csv(here("data","horizontal_HCD_virtual.csv"))
+phys_HC_HD<- read.csv(here("data","horizontal_HCD_physical.csv"))
 
 # VERTICAL DISTRIBUTION ----
 # Data preparation 
