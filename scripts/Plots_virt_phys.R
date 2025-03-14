@@ -3,7 +3,7 @@ library(here)
 library(ggplot2)
 library(dplyr)
 library(patchwork)
-read.csv(here("data","virt_phys.csv"))
+virt_phys <- read.csv(here("data","virt_phys.csv"))
 
 # Customised palettes
 cb_palette <-c("#e14444","darkgrey","navyblue","#E0E0E0")
@@ -262,7 +262,7 @@ pdf(file= here("figures", "fig.8","Trunk_Vertical_C.pdf"))
       position = "stack",
       color = "black"
     ) +
-    geom_hline(yintercept = c(65, 35), color = "black", linetype = "dashed") + s
+    geom_hline(yintercept = c(65, 35), color = "black", linetype = "dashed") + 
     ggtitle("Cranial Bones Horizontal Distribution - Half A/B") + 
     theme_minimal() +
     theme(
@@ -340,7 +340,7 @@ pdf(file= here("figures", "fig.9","Cranial_Bones_Horizontal_A.pdf"))
       position = "stack",
       color = "black"
     ) +
-    geom_hline(yintercept = c(65, 35), color = "black", linetype = "dashed") + s
+    geom_hline(yintercept = c(65, 35), color = "black", linetype = "dashed") + 
     ggtitle("Long Bones Horizontal Distribution - Half A/B") + 
     theme_minimal() +
     theme(
@@ -418,7 +418,7 @@ pdf(file= here("figures", "fig.9","Long_Bones_Horizontal_B.pdf"))
       position = "stack",
       color = "black"
     ) +
-    geom_hline(yintercept = c(65, 35), color = "black", linetype = "dashed") + s
+    geom_hline(yintercept = c(65, 35), color = "black", linetype = "dashed") + 
     ggtitle("Spongy Bone Horizontal Distribution - Half A/B") + 
     theme_minimal() +
     theme(
@@ -496,7 +496,7 @@ pdf(file= here("figures", "fig.10","Spongy_Bone_Horizontal_A.pdf"))
       position = "stack",
       color = "black"
     ) +
-    geom_hline(yintercept = c(65, 35), color = "black", linetype = "dashed") + s
+    geom_hline(yintercept = c(65, 35), color = "black", linetype = "dashed") + 
     ggtitle("Trunk Horizontal Distribution - Half A/B") + 
     theme_minimal() +
     theme(
@@ -574,7 +574,7 @@ pdf(file= here("figures", "fig.10","Trunk_Horizontal_B.pdf"))
       position = "stack",
       color = "black"
     ) +
-    geom_hline(yintercept = c(65, 35), color = "black", linetype = "dashed") + s
+    geom_hline(yintercept = c(65, 35), color = "black", linetype = "dashed") + 
     ggtitle("Upper Limbs Horizontal Distribution - Half A/B") + 
     theme_minimal() +
     theme(
@@ -652,7 +652,7 @@ pdf(file= here("figures", "fig.12","Upper_Limbs_Horizontal_A.pdf"))
       position = "stack",
       color = "black"
     ) +
-    geom_hline(yintercept = c(65, 35), color = "black", linetype = "dashed") + s
+    geom_hline(yintercept = c(65, 35), color = "black", linetype = "dashed") + 
     ggtitle("Lower Limbs Horizontal Distribution - Half A/B") + 
     theme_minimal() +
     theme(
