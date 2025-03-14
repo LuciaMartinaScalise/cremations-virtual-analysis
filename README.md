@@ -2,7 +2,7 @@
 
 This repository contains data and scripts used in the manuscript:
 
-Virtuality VS Reality: testing a virtual approach for the exploratory analysis of Bronze Age urns from Northern Italy
+Virtuality VS Reality: testing a virtual approach for the exploratory analysis of Bronze Age urns from Northern Italy,
 Lucia Martina Scalise, Maria Pia Morigi, Claudio Cavazzuti, Rosa Brancaccio, Enrico R. Crema, Marco Seracini, Stefano Benazzi, Emma Pomeroy
 
 The repository is organised into the following four main directories:
