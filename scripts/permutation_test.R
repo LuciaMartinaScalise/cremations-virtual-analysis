@@ -1,36 +1,39 @@
-#1.VERTICAL------
-#DATA UPLOAD AND MANIPULATION---------
-virt<-read.csv(file="C:/Project/Data/R/PhD/data/virt.csv")
-virt<- (virt[,1:18]/virt$TOT)
+# Load libraries and data ----
+library(here)
+library(reshape2)
+library(tidyverse)
+virt<-read.csv(here("data","vertical_virtual"))
+phys<-read.csv(here("data","vertical_physical"))
+read.csv(here("data","horizontal_HAB_virtual"))
+read.csv(here("data","horizontal_HAB_physical"))
+read.csv(here("data","horizontal_HCD_virtual"))
+read.csv(here("data","horizontal_HCD_physical"))
 
-phys<-read.csv(file="C:/Project/Data/R/PhD/data/phys.csv")
+# VERTICAL DISTRIBUTION ----
+# Data preparation 
+virt<- (virt[,1:18]/virt$TOT)
 phys<- (phys[,1:18]/phys$TOT)
 
-#INITIALISE DATA-----
 # Initialize the 'obs' object to store observed correlations
-obs <- numeric(18) # Vector to store observed correlations for each of the 18 columns
+obs <- numeric(18) 
 
 # Initialize the 'sim' object to store permuted correlations
-sim <- matrix(NA, nrow = 1000, ncol = 18) # Matrix to store 1000 permutations of 18 correlations
+sim <- matrix(NA, nrow = 1000, ncol = 18) 
 
 # Calculate observed correlations between 'physical' and 'virtual' for each column
-for (j in 1:18) {     #where j is the column index for the inner loop (cycle through the columns of virt and phys)
+for (j in 1:18) {    
   obs[j] <- cor(phys[, j], virt[, j])
 }
 
-#PERMUTATION-------
 # Permutation test loop: perform 1000 permutations
-for (i in 1:1000) {     #where i is the iteration counter that tracks the permutation you're working on
-  # Randomly shuffle the rows of the 'virtual' dataset
+for (i in 1:1000) {     
   virt <- virt[sample(10), ]
-  
   # For each permutation, calculate the correlation for each column
   for (j in 1:18) {
     sim[i, j] <- cor(phys[, j], virt[, j])
   }
 }
 
-#PLOTTING---------
 # Convert the simulation matrix into a long format for easier plotting
 sim_long <- as.data.frame(sim)
 sim_long <- sim_long %>%
@@ -54,8 +57,7 @@ sim_long <- sim_long %>%
     `Trunk Central` = V17, 
     `Trunk Lower` = V18)
 
-#reshape2::melt - reshapes dataset by melting and casting data - moving the data from columns to rows
-#from a dataframe of 1000 rows and 18 columns to 2 columns and 18000 rows
+# Reshape dataset 
 sim_long <- reshape2::melt(sim_long, variable.name = "Variable", value.name = "Correlation")
 
 # Create a dataframe for the observed correlations
@@ -80,6 +82,8 @@ obs_df <- data.frame(
                "Trunk Lower"),
   Correlation = obs)
 
+# Export data frame
+write.csv(obs_df, here("table_2", "Observed_correlation_vertical.csv"), row.names = FALSE)
 
 # Plot the histogram of simulated correlations, facetted by variable
 ggplot(sim_long, aes(x = Correlation)) +
@@ -110,36 +114,21 @@ ggplot(sim_long, aes(x = Correlation)) +
   theme_minimal()+
   theme(plot.title = element_text(hjust = 0.5))  # Center the title
 
-#p-VALUE-----
+# Save plot
+pdf(file= here("figures", "fig.13.pdf"))
+
 # Initialize p-value vector to store p-values for each column
-p_values_perm <- numeric(18)
 p_values_two_sided <- numeric(18)
-p_values_two_sided_corrected <- numeric(18)
 
-# Two-sided p-value calculation
+# Two-sided p-values 
 for (j in 1:18) {
-  # Count how many permuted correlations are as extreme as the observed correlation
-  # creates the logical vector to define the rules to consider the greater or equal 
-  # absolute values of the correlations and than calculate the means 
-  #(as it's the count of the TRUE values by the total elements in the vector)
-  p_values_perm[j] <- mean(abs(sim[, j]) >= abs(obs[j]))
-}
-
-#p-value two-sided calculated by rank 
-for (j in 1:18) {
-p_values_two_sided[j] <- (sum(abs(sim[, j]) >= abs(obs[j])) + 1) / (1000 + 1)
-}
-
-#p-values two-sided suggested by Enrico
-for (j in 1:18) {
-p_values_two_sided_corrected[j] <- 2*min((sum(obs[j] > sim[,j]) + 1)/(1000+1),
+p_values_two_sided[j] <- 2*min((sum(obs[j] > sim[,j]) + 1)/(1000+1),
                                          (sum(obs[j] < sim[,j]) + 1)/(1000+1))
 }
 
-#the two methods to calculate p-values give identical results
 
-#p-values stored in a data frame
-p_values_two_sided_corrected <- data.frame(p_values_two_sided_corrected, row.names = c("Cranial Bones Upper", 
+# p-values stored in a data frame
+p_values_two_sided <- data.frame(p_values_two, row.names = c("Cranial Bones Upper", 
                                                          "Cranial Bones Central", 
                                                          "Cranial Bones Lower",
                                                          "Long Bones Upper", 
@@ -158,14 +147,8 @@ p_values_two_sided_corrected <- data.frame(p_values_two_sided_corrected, row.nam
                                                          "Trunk Central", 
                                                          "Trunk Lower"))
 
-
-
-#transcript of what Enrico wrote on the blackboard on our meeting on 18/10/2024
-for (i in 1:1000)
-  virtual = virtual  [sample(10),]
-for (j in 1:18)
-  sim[j:i]= cor(obs[,j],vr[,j])
-
+# Export data frame
+write.csv(p_values_two_sided, here("table_2", "Two-sided_p-value_vertical.csv"), row.names = TRUE)
 
 #2.HORIZONTAL HA/HB-----
 #DATA UPLOAD AND MANIPULATION---------
