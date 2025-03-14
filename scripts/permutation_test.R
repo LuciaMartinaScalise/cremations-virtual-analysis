@@ -4,10 +4,10 @@ library(reshape2)
 library(tidyverse)
 virt<-read.csv(here("data","vertical_virtual"))
 phys<-read.csv(here("data","vertical_physical"))
-read.csv(here("data","horizontal_HAB_virtual"))
-read.csv(here("data","horizontal_HAB_physical"))
-read.csv(here("data","horizontal_HCD_virtual"))
-read.csv(here("data","horizontal_HCD_physical"))
+virt_HA_HB<- read.csv(here("data","horizontal_HAB_virtual"))
+phys_HA_HB<- read.csv(here("data","horizontal_HAB_physical"))
+virt_HC_HD<- read.csv(here("data","horizontal_HCD_virtual"))
+phys_HC_HD<- read.csv(here("data","horizontal_HCD_physical"))
 
 # VERTICAL DISTRIBUTION ----
 # Data preparation 
@@ -150,38 +150,29 @@ p_values_two_sided <- data.frame(p_values_two, row.names = c("Cranial Bones Uppe
 # Export data frame
 write.csv(p_values_two_sided, here("table_2", "Two-sided_p-value_vertical.csv"), row.names = TRUE)
 
-#2.HORIZONTAL HA/HB-----
-#DATA UPLOAD AND MANIPULATION---------
-virt_HA_HB<-read.csv(file="C:/Project/Data/R/PhD/data/virt_HA_HB.csv")
+# HORIZONTAL DISTRIBUTION HA/HB----
+# Data preparation
 virt_HA_HB<- (virt_HA_HB[,1:12]/virt_HA_HB$TOT)
-
-phys_HA_HB<-read.csv(file="C:/Project/Data/R/PhD/data/phys_HA_HB.csv")
 phys_HA_HB<- (phys_HA_HB[,1:12]/phys_HA_HB$TOT)
 
-#INITIALISE DATA-----
 # Initialize the 'obs' object to store observed correlations
-obs_HA_HB <- numeric(12) # Vector to store observed correlations for each of the 12 columns
+obs_HA_HB <- numeric(12) 
 
 # Initialize the 'sim' object to store permuted correlations
-sim_HA_HB <- matrix(NA, nrow = 1000, ncol = 12) # Matrix to store 1000 permutations of 12 correlations
+sim_HA_HB <- matrix(NA, nrow = 1000, ncol = 12) 
 
 # Calculate observed correlations between 'physical' and 'virtual' for each column
 for (j in 1:12) {
   obs_HA_HB[j] <- cor(phys_HA_HB[, j], virt_HA_HB[, j])
 }
 
-#PERMUTATION-------
 # Permutation test loop: perform 1000 permutations
 for (i in 1:1000) {
-  # Randomly shuffle the rows of the 'virtual' dataset
   virt_HA_HB <- virt_HA_HB[sample(10), ]
-  
-  # For each permutation, calculate the correlation for each column
   for (j in 1:12) {
     sim_HA_HB[i, j] <- cor(phys_HA_HB[, j], virt_HA_HB[, j])}
   }
 
-#PLOTTING---------
 # Convert the simulation matrix into a long format for easier plotting
 sim_long_HA_HB <- as.data.frame(sim_HA_HB)
 sim_long_HA_HB <- sim_long_HA_HB %>%
@@ -217,6 +208,8 @@ obs_df_HA_HB <- data.frame(
                "Trunk Half B"),
   Correlation = obs_HA_HB)
 
+# Export data frame
+write.csv(obs_df_HA_HB, here("table_2", "Observed_correlation_HA_B.csv"), row.names = FALSE)
 
 # Plot the histogram of simulated correlations, facetted by variable
 ggplot(sim_long_HA_HB, aes(x = Correlation)) +
@@ -240,11 +233,13 @@ ggplot(sim_long_HA_HB, aes(x = Correlation)) +
   coord_cartesian(xlim = c(-1, 1)) +
   theme_minimal()
 
-#p-VALUE-----
+# Save plot
+pdf(file= here("figures", "fig.14.pdf"))
+
 # Initialize p-value vector to store p-values for each column
 p_values_perm_HA_HB <- numeric(12)
 
-#p-values two-sided suggested by Enrico
+#p-values two-sided 
 for (j in 1:12) {
   p_values_perm_HA_HB[j] <- 2*min((sum(obs_HA_HB[j] > sim_HA_HB[,j]) + 1)/(1000+1),
                                            (sum(obs_HA_HB[j] < sim_HA_HB[,j]) + 1)/(1000+1))
@@ -264,39 +259,32 @@ p_values_perm_HA_HB <- data.frame(p_values_perm_HA_HB, row.names = c("Cranial Bo
                                                                      "Trunk Half A", 
                                                                      "Trunk Half B"))
 
+# Export data frame
+write.csv(p_values_perm_HA_HB, here("table_2", "Two-sided_p-value_HA_B.csv"), row.names = TRUE)
 
-#3.HORIZONTAL HC/HD-----
-#DATA UPLOAD AND MANIPULATION---------
-virt_HC_HD<-read.csv(file="C:/Project/Data/R/PhD/data/virt_HC_HD.csv")
+# HORIZONTAL DISTRIBUTION HC/HD----
+# Data preparation
 virt_HC_HD<- (virt_HC_HD[,1:12]/virt_HC_HD$TOT)
-
-phys_HC_HD<-read.csv(file="C:/Project/Data/R/PhD/data/phys_HC_HD.csv")
 phys_HC_HD<- (phys_HC_HD[,1:12]/phys_HC_HD$TOT)
 
-#INITIALISE DATA-----
 # Initialize the 'obs' object to store observed correlations
-obs_HC_HD <- numeric(12) # Vector to store observed correlations for each of the 12 columns
+obs_HC_HD <- numeric(12) 
 
 # Initialize the 'sim' object to store permuted correlations
-sim_HC_HD <- matrix(NA, nrow = 1000, ncol = 12) # Matrix to store 1000 permutations of 12 correlations
+sim_HC_HD <- matrix(NA, nrow = 1000, ncol = 12) 
 
 # Calculate observed correlations between 'physical' and 'virtual' for each column
 for (j in 1:12) {
   obs_HC_HD[j] <- cor(phys_HC_HD[, j], virt_HC_HD[, j])
 }
 
-#PERMUTATION-------
 # Permutation test loop: perform 1000 permutations
 for (i in 1:1000) {
-  # Randomly shuffle the rows of the 'virtual' dataset
   virt_HC_HD <- virt_HC_HD[sample(10), ]
-  
-  # For each permutation, calculate the correlation for each column
   for (j in 1:12) {
     sim_HC_HD[i, j] <- cor(phys_HC_HD[, j], virt_HC_HD[, j])}
 }
 
-#PLOTTING---------
 # Convert the simulation matrix into a long format for easier plotting
 sim_long_HC_HD <- as.data.frame(sim_HC_HD)
 sim_long_HC_HD <- sim_long_HC_HD %>%
@@ -332,6 +320,8 @@ obs_df_HC_HD <- data.frame(
                "Trunk Half D"),
   Correlation = obs_HC_HD)
 
+# Export data frame
+write.csv(obs_df_HC_HD, here("table_2", "Observed_correlation_HC_D.csv"), row.names = FALSE)
 
 # Plot the histogram of simulated correlations, facetted by variable
 ggplot(sim_long_HC_HD, aes(x = Correlation)) +
@@ -356,7 +346,9 @@ ggplot(sim_long_HC_HD, aes(x = Correlation)) +
   coord_cartesian(ylim = c(0,200))+
   theme_minimal()
 
-#p-VALUE-----
+# Save plot
+pdf(file= here("figures", "fig.15.pdf"))
+
 # Initialize p-value vector to store p-values for each column
 p_values_perm_HC_HD <- numeric(12)
 
@@ -379,3 +371,6 @@ p_values_perm_HC_HD <- data.frame(p_values_perm_HC_HD, row.names = c("Cranial Bo
                                                                      "Lower Limbs Half D", 
                                                                      "Trunk Half C", 
                                                                      "Trunk Half D"))
+
+# Export data frame
+write.csv(p_values_perm_HC_HD, here("table_2", "Two-sided_p-value_HC_D.csv"), row.names = TRUE)
