@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15028221.svg)](https://doi.org/10.5281/zenodo.15028221)
+
 # Data and R scripts for the manuscript 'Virtuality VS Reality: testing a virtual approach for the exploratory analysis of Bronze Age urns from Northern Italy'
 
 This repository contains data and scripts used in the manuscript:
