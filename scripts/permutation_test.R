@@ -352,7 +352,7 @@ pdf(file= here("figures", "fig.15.pdf"))
 # Initialize p-value vector to store p-values for each column
 p_values_perm_HC_HD <- numeric(12)
 
-#p-values two-sided suggested by Enrico
+#p-values two-sided 
 for (j in 1:12) {
   p_values_perm_HC_HD[j] <- 2*min((sum(obs_HC_HD[j] > sim_HC_HD[,j]) + 1)/(1000+1),
                                   (sum(obs_HC_HD[j] < sim_HC_HD[,j]) + 1)/(1000+1))
