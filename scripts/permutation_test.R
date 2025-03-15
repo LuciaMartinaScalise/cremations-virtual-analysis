@@ -128,7 +128,7 @@ p_values_two_sided[j] <- 2*min((sum(obs[j] > sim[,j]) + 1)/(1000+1),
 
 
 # p-values stored in a data frame
-p_values_two_sided <- data.frame(p_values_two, row.names = c("Cranial Bones Upper", 
+p_values_two_sided <- data.frame(p_values_two_sided, row.names = c("Cranial Bones Upper", 
                                                          "Cranial Bones Central", 
                                                          "Cranial Bones Lower",
                                                          "Long Bones Upper", 
