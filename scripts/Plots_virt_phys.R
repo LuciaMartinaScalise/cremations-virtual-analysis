@@ -4,6 +4,8 @@ library(ggplot2)
 library(dplyr)
 library(patchwork)
 virt_phys <- read.csv(here("data","virt_phys.csv"))
+virt_phys <- virt_phys %>%
+  mutate(section = factor(section, levels = c("upper", "central", "lower")))
 
 # Customised palettes
 cb_palette <-c("#e14444","darkgrey","navyblue","#E0E0E0")
