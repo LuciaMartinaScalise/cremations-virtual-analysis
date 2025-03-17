@@ -85,6 +85,8 @@ obs_df <- data.frame(
 # Export data frame
 write.csv(obs_df, here("table_2", "Observed_correlation_vertical.csv"), row.names = FALSE)
 
+# Save plot
+pdf(file= here("figures", "fig.13.pdf"))
 # Plot the histogram of simulated correlations, facetted by variable
 ggplot(sim_long, aes(x = Correlation)) +
   geom_histogram(bins = 30, fill = "lightblue", color = "black") +
@@ -113,9 +115,7 @@ ggplot(sim_long, aes(x = Correlation)) +
   coord_cartesian(xlim = c(-1, 1)) +
   theme_minimal()+
   theme(plot.title = element_text(hjust = 0.5))  # Center the title
-
-# Save plot
-pdf(file= here("figures", "fig.13.pdf"))
+dev.off()
 
 # Initialize p-value vector to store p-values for each column
 p_values_two_sided <- numeric(18)
@@ -211,6 +211,8 @@ obs_df_HA_HB <- data.frame(
 # Export data frame
 write.csv(obs_df_HA_HB, here("table_2", "Observed_correlation_HA_B.csv"), row.names = FALSE)
 
+# Save plot
+pdf(file= here("figures", "fig.14.pdf"))
 # Plot the histogram of simulated correlations, facetted by variable
 ggplot(sim_long_HA_HB, aes(x = Correlation)) +
   geom_histogram(bins = 30, fill = "lightblue", color = "black") +
@@ -232,9 +234,8 @@ ggplot(sim_long_HA_HB, aes(x = Correlation)) +
              scales = "free_x", ncol=2) +  
   coord_cartesian(xlim = c(-1, 1)) +
   theme_minimal()
+dev.off()
 
-# Save plot
-pdf(file= here("figures", "fig.14.pdf"))
 
 # Initialize p-value vector to store p-values for each column
 p_values_perm_HA_HB <- numeric(12)
@@ -323,6 +324,8 @@ obs_df_HC_HD <- data.frame(
 # Export data frame
 write.csv(obs_df_HC_HD, here("table_2", "Observed_correlation_HC_D.csv"), row.names = FALSE)
 
+# Save plot
+pdf(file= here("figures", "fig.15.pdf"))
 # Plot the histogram of simulated correlations, facetted by variable
 ggplot(sim_long_HC_HD, aes(x = Correlation)) +
   geom_histogram(bins = 30, fill = "lightblue", color = "black") +
@@ -345,9 +348,7 @@ ggplot(sim_long_HC_HD, aes(x = Correlation)) +
   scale_x_continuous(limits = c(-1, 1)) + # Strict x-axis limits
   coord_cartesian(ylim = c(0,200))+
   theme_minimal()
-
-# Save plot
-pdf(file= here("figures", "fig.15.pdf"))
+dev.off()
 
 # Initialize p-value vector to store p-values for each column
 p_values_perm_HC_HD <- numeric(12)
