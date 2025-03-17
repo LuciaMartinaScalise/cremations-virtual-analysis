@@ -9,6 +9,10 @@ phys_HA_HB<- read.csv(here("data","horizontal_HAB_physical.csv"))
 virt_HC_HD<- read.csv(here("data","horizontal_HCD_virtual.csv"))
 phys_HC_HD<- read.csv(here("data","horizontal_HCD_physical.csv"))
 
+# setting random seed to uniform results
+random.seed <- 37 
+set.seed(random.seed)
+
 # VERTICAL DISTRIBUTION ----
 # Data preparation 
 virt<- (virt[,1:18]/virt$TOT)
