@@ -20,6 +20,7 @@ t_palette <-c("#f0f050","darkgrey","navyblue","#E0E0E0")
 # VERTICAL DISTRIBUTION ----
 
 # Fig. 7 - A
+pdf(file= here("figures", "fig.7","Cranial_Bones_Vertical_A.pdf"))
 ggplot(
   data = virt_phys %>%
     filter(element == "CB") %>%
@@ -55,9 +56,11 @@ ggplot(
   coord_cartesian(ylim = c(0, 100)) +
   facet_wrap(~ method, ncol = 2)
 # Save plot
-pdf(file= here("figures", "fig.7","Cranial_Bones_Vertical_A.pdf"))
+dev.off()
 
 # Fig. 7 - B
+# Save plot
+pdf(file= here("figures", "fig.7","Long_Bones_Vertical_B.pdf"))
 ggplot(
   data = virt_phys %>%
     filter(element == "LB") %>%
@@ -92,10 +95,11 @@ ggplot(
   ) +
   coord_cartesian(ylim = c(0, 100)) +
   facet_wrap(~ method, ncol = 2)
-# Save plot
-pdf(file= here("figures", "fig.7","Long_Bones_Vertical_B.pdf"))
+dev.off()
 
 # Fig. 7 - C
+# Save plot
+pdf(file= here("figures", "fig.7","Spongy_Bone_Vertical_C.pdf"))
 ggplot(
   data = virt_phys %>%
     filter(element == "SB") %>%
@@ -130,10 +134,11 @@ ggplot(
   ) +
   coord_cartesian(ylim = c(0, 100)) +
   facet_wrap(~ method, ncol = 2)
-# Save plot
-pdf(file= here("figures", "fig.7","Spongy_Bone_Vertical_C.pdf"))
+dev.off()
 
 # Fig. 8 - A
+# Save plot
+pdf(file= here("figures", "fig.8","Upper_Limbs_Vertical_A.pdf"))
 ggplot(
   data = virt_phys %>%
     filter(element == "UL") %>%
@@ -168,10 +173,11 @@ ggplot(
   ) +
   coord_cartesian(ylim = c(0, 100)) +
   facet_wrap(~ method, ncol = 2)
-# Save plot
-pdf(file= here("figures", "fig.8","Upper_Limbs_Vertical_A.pdf"))
+dev.off()
 
 # Fig. 8 - B
+# Save plot
+pdf(file= here("figures", "fig.8","Lower_Limbs_Vertical_B.pdf"))
 ggplot(
   data = virt_phys %>%
     filter(element == "LL") %>%
@@ -206,10 +212,11 @@ ggplot(
   ) +
   coord_cartesian(ylim = c(0, 100)) +
   facet_wrap(~ method, ncol = 2)
-# Save plot
-pdf(file= here("figures", "fig.8","Lower_Limbs_Vertical_B.pdf"))
+dev.off()
 
 # Fig. 8 - C
+# Save plot
+pdf(file= here("figures", "fig.8","Trunk_Vertical_C.pdf"))
 ggplot(
   data = virt_phys %>%
     filter(element == "T") %>%
@@ -244,12 +251,13 @@ ggplot(
   ) +
   coord_cartesian(ylim = c(0, 100)) +
   facet_wrap(~ method, ncol = 2)
-# Save plot
-pdf(file= here("figures", "fig.8","Trunk_Vertical_C.pdf"))
+dev.off()
 
 # HORIZONTAL DISTRIBUTION ----
 
 # Fig. 9 - A
+# Save plot
+pdf(file= here("figures", "fig.9","Cranial_Bones_Horizontal_A.pdf"))
 (
   ggplot(
     data = virt_phys %>%
@@ -324,10 +332,11 @@ pdf(file= here("figures", "fig.8","Trunk_Vertical_C.pdf"))
       coord_cartesian(ylim = c(0, 100)) +
       facet_wrap(~ method, ncol = 2)
   )
-# Save plot
-pdf(file= here("figures", "fig.9","Cranial_Bones_Horizontal_A.pdf"))
+dev.off()
 
 # Fig. 9 - B
+# Save plot
+pdf(file= here("figures", "fig.9","Long_Bones_Horizontal_B.pdf"))
 (
   ggplot(
     data = virt_phys %>%
@@ -402,10 +411,11 @@ pdf(file= here("figures", "fig.9","Cranial_Bones_Horizontal_A.pdf"))
       coord_cartesian(ylim = c(0, 100)) +
       facet_wrap(~ method, ncol = 2)
   )
-# Save plot
-pdf(file= here("figures", "fig.9","Long_Bones_Horizontal_B.pdf"))
+dev.off()
 
 # Fig. 10 - A
+# Save plot
+pdf(file= here("figures", "fig.10","Spongy_Bone_Horizontal_A.pdf"))
 (
   ggplot(
     data = virt_phys %>%
@@ -480,10 +490,11 @@ pdf(file= here("figures", "fig.9","Long_Bones_Horizontal_B.pdf"))
       coord_cartesian(ylim = c(0, 100)) +
       facet_wrap(~ method, ncol = 2)
   )
-# Save plot
-pdf(file= here("figures", "fig.10","Spongy_Bone_Horizontal_A.pdf"))
+dev.off()
 
 # Fig. 10 - B
+# Save plot
+pdf(file= here("figures", "fig.10","Trunk_Horizontal_B.pdf"))
 (
   ggplot(
     data = virt_phys %>%
@@ -558,10 +569,11 @@ pdf(file= here("figures", "fig.10","Spongy_Bone_Horizontal_A.pdf"))
       coord_cartesian(ylim = c(0, 100)) +
       facet_wrap(~ method, ncol = 2)
   )
-# Save plot
-pdf(file= here("figures", "fig.10","Trunk_Horizontal_B.pdf"))
+dev.off()
 
 # Fig. 12 - A
+# Save plot
+pdf(file= here("figures", "fig.12","Upper_Limbs_Horizontal_A.pdf"))
 (
   ggplot(
     data = virt_phys %>%
@@ -636,10 +648,11 @@ pdf(file= here("figures", "fig.10","Trunk_Horizontal_B.pdf"))
       coord_cartesian(ylim = c(0, 100)) +
       facet_wrap(~ method, ncol = 2)
   )
-# Save plot
-pdf(file= here("figures", "fig.12","Upper_Limbs_Horizontal_A.pdf"))
+dev.off()
 
 # Fig. 12 - B
+# Save plot
+pdf(file= here("figures", "fig.12","Lower_Limbs_Horizontal_B.pdf"))
 (
   ggplot(
     data = virt_phys %>%
@@ -714,5 +727,4 @@ pdf(file= here("figures", "fig.12","Upper_Limbs_Horizontal_A.pdf"))
       coord_cartesian(ylim = c(0, 100)) +
       facet_wrap(~ method, ncol = 2)
   )
-# Save plot
-pdf(file= here("figures", "fig.12","Lower_Limbs_Horizontal_B.pdf"))
+dev.off()
